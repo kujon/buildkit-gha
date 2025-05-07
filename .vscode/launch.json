@@ -14,7 +14,7 @@
                 "-t",
                 "testing",
                 "--buildkit-addr",
-                "unix://var/run/docker.sock",
+                "unix:///var/run/docker.sock",
                 "."
             ]
         }
