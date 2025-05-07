@@ -26,16 +26,13 @@ jobs:
         with:
           go-version: "1.22.6"
       - name: build
-        run: go build .
-      - name: Install buildctl
-        run: |
-          curl -fsSL https://github.com/moby/buildkit/releases/download/v0.21.1/buildkit-v0.21.1.linux-amd64.tar.gz \
-            | tar -xz -C /usr/local/bin --strip-components=1 buildkit-v0.21.1.linux-amd64/bin/buildctl
+        run: go build .  
       - name: Wait for BuildKit to be ready
         run: |
-          for i in $(seq 1 10); do
-            buildctl --addr tcp://localhost:1234 debug workers && break
+          echo "Waiting for BuildKit on localhost:1234…"
+          until echo > /dev/tcp/localhost/1234 2>/dev/null; do
             sleep 1
           done
+          echo "BuildKit is up!"
       - name: Build Dockerfile
         run: ./buildkit-gha -t testing --buildkit-addr tcp://localhost:1234 .
