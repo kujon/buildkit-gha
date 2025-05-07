@@ -9,7 +9,7 @@ jobs:
 
     services:
       buildkitd:
-        image: moby/buildkit:buildx-stable-1
+        image: moby/buildkit
         # need --privileged for container-based workers
         options: --privileged
         ports:
