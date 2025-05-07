@@ -23,8 +23,8 @@ import (
 
 func main() {
 	app := cli.NewApp()
-	app.Name = "build-using-dockerfile"
-	app.UsageText = `build-using-dockerfile [OPTIONS] PATH | URL | -`
+	app.Name = "buildkit-gha"
+	app.UsageText = `buildkit-gha [OPTIONS] PATH | URL | -`
 	app.Description = `
 build using Dockerfile.
 
