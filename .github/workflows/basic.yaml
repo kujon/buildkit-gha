@@ -35,4 +35,4 @@ jobs:
           done
           echo "BuildKit is up!"
       - name: Build Dockerfile
-        run: ./buildkit-gha -t testing --buildkit-addr tcp://localhost:1234 .
+        run: ./buildkit-gha -t testing --buildkit-addr tcp://0.0.0.0:1234 .
