@@ -29,8 +29,8 @@ jobs:
         run: go build .
       - name: Install buildctl
         run: |
-          curl -fsSL https://github.com/moby/buildkit/releases/download/v0.13.3/buildkit-v0.13.3.linux-amd64.tar.gz \
-            | tar -xz -C /usr/local/bin --strip-components=1 buildkit-v0.13.3.linux-amd64/bin/buildctl
+          curl -fsSL https://github.com/moby/buildkit/releases/download/v0.21.1/buildkit-v0.21.1.linux-amd64.tar.gz \
+            | tar -xz -C /usr/local/bin --strip-components=1 buildkit-v0.21.1.linux-amd64/bin/buildctl
       - name: Wait for BuildKit to be ready
         run: |
           for i in $(seq 1 10); do
