@@ -7,15 +7,6 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    services:
-      buildkitd:
-        image: moby/buildkit
-        # need --privileged for container-based workers
-        options: --privileged
-        ports:
-          # expose the default port so we can talk over TCP
-          - 1234:1234
-
     steps:
       - uses: actions/checkout@v4
       - name: Setup Go
@@ -24,12 +15,5 @@ jobs:
           go-version: "1.22.6"
       - name: build
         run: go build .
-      - name: Wait for BuildKit to be ready
-        run: |
-          echo "Waiting for BuildKit on localhost:1234…"
-          until echo > /dev/tcp/localhost/1234 2>/dev/null; do
-            sleep 1
-          done
-          echo "BuildKit is up!"
       - name: Build Dockerfile
-        run: ./buildkit-gha -t testing --buildkit-addr tcp://buildkitd:1234 .
+        run: ./buildkit-gha -t testing --buildkit-addr unix:///var/run/docker.sock .

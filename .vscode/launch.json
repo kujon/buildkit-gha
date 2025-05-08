@@ -15,6 +15,7 @@
                 "testing",
                 "--buildkit-addr",
                 "unix:///var/run/docker.sock",
+                // "--clientside-frontend",
                 "."
             ]
         }
